@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceholderTextView", "PlaceholderTextView\PlaceholderTextView.csproj", "{FE580E04-60D4-4417-A7D5-937DA346B2F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE580E04-60D4-4417-A7D5-937DA346B2F3}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FE580E04-60D4-4417-A7D5-937DA346B2F3}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FE580E04-60D4-4417-A7D5-937DA346B2F3}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FE580E04-60D4-4417-A7D5-937DA346B2F3}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{FE580E04-60D4-4417-A7D5-937DA346B2F3}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FE580E04-60D4-4417-A7D5-937DA346B2F3}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FE580E04-60D4-4417-A7D5-937DA346B2F3}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FE580E04-60D4-4417-A7D5-937DA346B2F3}.Release|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+EndGlobal
