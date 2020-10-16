@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.ComponentModel;
+using Base.UI.iOS.Extensions;
 using CoreGraphics;
 using Foundation;
+using Core.Base.Extensions;
 using UIKit;
+using System.Collections.Generic;
 
-namespace PlaceholderTextView.PlaceholderTextView
+namespace Base.UI.iOS.Controls.PlaceholderTextView
 {
     [Register("PlaceholderTextView"), DesignTimeVisible(true)]
     public partial class PlaceholderTextView : UITextView
@@ -91,16 +93,6 @@ namespace PlaceholderTextView.PlaceholderTextView
             }
         }
 
-        public override bool HasText
-        {
-            get
-            {
-                _placeholderLabel.Hidden = base.HasText;
-
-                return base.HasText;
-            }
-        }
-
         private UIEdgeInsets _placeholderInsets = PlaceholderAppearance.Insets;
 
         public UIEdgeInsets PlaceholderInsets
@@ -146,15 +138,18 @@ namespace PlaceholderTextView.PlaceholderTextView
         private void Initialize()
         {
             SetupPlaceholder();
+
+            NSNotificationCenter.DefaultCenter.AddObserver(UITextView.TextDidChangeNotification, TextChangedNotification);
         }
 
+        private void TextChangedNotification(NSNotification notification)
+            => _placeholderLabel.Hidden = !Text.IsNullOrEmtpy();
+        
         private void SetupPlaceholder()
         {
             var label = new UILabel()
-            {
-                Lines = 0,
-                TranslatesAutoresizingMaskIntoConstraints = false
-            };
+                .WithDisabledAutoresizingMask()
+                .WithLinesNumber(0);
 
             label.Layer.ZPosition = -1;
 
@@ -188,6 +183,17 @@ namespace PlaceholderTextView.PlaceholderTextView
         {
             _placeholderLabel.AttributedText = AttributedPlaceholder ?? new NSAttributedString(Placeholder, new UIStringAttributes { Font = PlaceholderFont, ForegroundColor = PlaceholderColor });
             _placeholderLabel.TextAlignment = PlaceholderAlignment;
+        }
+
+        #endregion
+
+        #region Protected
+
+        protected override void Dispose(bool disposing)
+        {
+            NSNotificationCenter.DefaultCenter.RemoveObserver(UITextView.TextDidChangeNotification);
+
+            base.Dispose(disposing);
         }
 
         #endregion
