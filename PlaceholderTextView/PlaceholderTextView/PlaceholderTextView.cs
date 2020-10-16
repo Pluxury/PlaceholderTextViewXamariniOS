@@ -93,6 +93,16 @@ namespace Base.UI.iOS.Controls.PlaceholderTextView
             }
         }
 
+        public override string Text
+        {
+            set
+            {
+                base.Text = value;
+
+                _placeholderLabel.Hidden = !base.Text.IsNullOrEmtpy();
+            }
+        }
+
         private UIEdgeInsets _placeholderInsets = PlaceholderAppearance.Insets;
 
         public UIEdgeInsets PlaceholderInsets
