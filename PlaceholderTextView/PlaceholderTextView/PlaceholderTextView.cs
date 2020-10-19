@@ -149,12 +149,9 @@ namespace Base.UI.iOS.Controls.PlaceholderTextView
         {
             SetupPlaceholder();
 
-            NSNotificationCenter.DefaultCenter.AddObserver(UITextView.TextDidChangeNotification, TextChangedNotification);
+            NSNotificationCenter.DefaultCenter.AddObserver(this, new ObjCRuntime.Selector("OnTextChangedNotification:"), TextDidChangeNotification, this);
         }
 
-        private void TextChangedNotification(NSNotification notification)
-            => _placeholderLabel.Hidden = !Text.IsNullOrEmtpy();
-        
         private void SetupPlaceholder()
         {
             var label = new UILabel()
@@ -201,10 +198,18 @@ namespace Base.UI.iOS.Controls.PlaceholderTextView
 
         protected override void Dispose(bool disposing)
         {
-            NSNotificationCenter.DefaultCenter.RemoveObserver(UITextView.TextDidChangeNotification);
+            NSNotificationCenter.DefaultCenter.RemoveObserver(this);
 
             base.Dispose(disposing);
         }
+
+        #endregion
+
+        #region Public
+
+        [Export("OnTextChangedNotification:")]
+        public void OnTextChangedNotification(NSNotification notification)
+           => _placeholderLabel.Hidden = !Text.IsNullOrEmtpy();
 
         #endregion
     }
