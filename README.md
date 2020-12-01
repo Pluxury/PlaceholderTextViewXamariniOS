@@ -1,4 +1,4 @@
-# PlaceholderTextViewXamariniOS
+# Placeholder TextView Xamarin.iOS
 
 Custom UITextView with support for multi-line placeholder text for Xamarin.iOS.
 
